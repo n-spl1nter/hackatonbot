@@ -1,8 +1,8 @@
-const app = require('./app');
-const webhookController = require('./controllers/webhook');
+import app from './app';
+import webhookController from './controllers/webhook';
 
 app.post('/webhook', ...webhookController.middlewares, webhookController.handler);
 
 app.get('*', (req, res) => {
-  res.send('11');
+  res.send('112');
 });

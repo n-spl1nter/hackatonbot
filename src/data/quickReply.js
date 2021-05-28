@@ -6,7 +6,7 @@ async function getActivityMessage(event, type) {
   const { sender: { id } } = event;
   await sendMessage({ text: 'Сейчас поищем...' }, id);
   const data = await getNextActivityByType(event, type);
-  await sendImage('https://randomuser.me/api/portraits/men/75.jpg', id);
+  await sendImage(data.user.picture, id);
   const text = `${data.eventName} (${data.eventDate}). Организатор ${data.user.name}.`;
   await sendMessage({ text }, id);
   const replyMessage = {

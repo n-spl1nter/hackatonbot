@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { ACCESS_TOKEN } from '../config/creds';
 
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+
 const GRAPH_BASE = 'https://graph.facebook.com';
 const GRAPH_URL = `${GRAPH_BASE}/v10.0`;
-
-axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 export function sendImage(url, recipientId) {
   const message = {

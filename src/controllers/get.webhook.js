@@ -7,15 +7,13 @@ function handler(req, res) {
   const challenge = req.query['hub.challenge'];
 
   if (mode && token) {
-    // Checks the mode and token sent is correct
     if (mode === 'subscribe' && token === VERIFY_TOKEN) {
       console.log('WEBHOOK_VERIFIED');
       res.status(200).send(challenge);
-
-    } else {
-      res.sendStatus(403);
+      return;
     }
   }
+  res.sendStatus(403);
 }
 
 const middlewares = [];

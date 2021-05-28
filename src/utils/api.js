@@ -1,17 +1,17 @@
-const axios = require('axios');
-const { ACCESS_TOKEN } = require('../config/creds');
+import axios from 'axios';
+import { ACCESS_TOKEN } from '../config/creds';
 
-axios.defaults.baseURL = 'https://graph.facebook.com/v2.9';
+axios.defaults.baseURL = 'https://graph.facebook.com/v10.0';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
-axios.defaults.headers.common.Authorization = `Bearer ${ACCESS_TOKEN}`;
 
-const api = {
-  get: (...args) => {
-    return axios.get(...args);
-  },
-  post: (...args) => {
-    return axios.post(...args);
-  },
+export function sendMessage(message, recipientId, messaging_type = 'RESPONSE') {
+  const payload = {
+    recipient: {
+      id: recipientId,
+    },
+    messaging_type,
+    message,
+  };
+
+  return axios.post(`/me/messages?access_token=${ACCESS_TOKEN}`, payload);
 }
-
-module.exports = api;

@@ -1,8 +1,10 @@
 import app from './app';
-import webhookController from './controllers/webhook';
+import postWebhook from './controllers/post.webhook';
+import getWebhook from './controllers/get.webhook';
 
-app.post('/webhook', ...webhookController.middlewares, webhookController.handler);
+app.post('/webhook', ...postWebhook.middlewares, postWebhook.handler);
+app.get('/webhook', ...getWebhook.middlewares, getWebhook.handler);
 
 app.get('*', (req, res) => {
-  res.send('112');
+  res.send('ok');
 });

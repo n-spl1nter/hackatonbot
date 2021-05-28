@@ -5,7 +5,7 @@ const verify = require('./utils/verifySignature');
 const port = process.env.PORT || 8080;
 const app = express();
 
-app.use(bodyParser.json({ verify }));
+app.use(bodyParser.json());
 app.listen(port, () => {
   console.log('---', 'app running at', port);
 })

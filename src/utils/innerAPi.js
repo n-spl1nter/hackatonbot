@@ -11,17 +11,25 @@ export async function agree(userId, agreeId) {
 
 export async function getNextActivityByType (event) {
   const { sender: { id } } = event;
-  const res = await axios.get(`${BASE_URL}/user/${id}/get_event`);
-  const data = res.data;
-  if (data.type === 'no_event') {
-    return data;
-  }
-  const user = await getUserProfile(data.user_id);
+  try {
+    const res = await axios.get(`${BASE_URL}/user/${id}/get_event`);
+    const data = res.data;
+    if (data.type === 'no_event') {
+      return data;
+    }
+    const user = await getUserProfile(data.user_id);
 
-  return {
-    user,
-    eventId: data.id_event,
-  };
+    return {
+      user,
+      eventId: data.id_event,
+    };
+  } catch (err) {
+    console.error(err);
+      return {
+        type: 'no_event',
+        message: 'Какая-то ошибка...'
+      };
+  }
 }
 
 /**

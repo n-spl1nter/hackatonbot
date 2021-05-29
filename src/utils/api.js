@@ -68,7 +68,7 @@ export async function sendMatch(ids) {
 
   const getMessage = (user) => {
     return {
-      text: `Поздравляем! ${user.firstName} из отдела ${user.department} тоже хочет с тобой встретиться! Напиши первым ${user.link}`,
+      text: `Поздравляем! ${user.firstName} из отдела ${user.department} тоже хочет с тобой встретиться! Напиши первым https://adeo.workplace.com/chat/t/${user.id}`,
     };
   };
   await Promise.all([

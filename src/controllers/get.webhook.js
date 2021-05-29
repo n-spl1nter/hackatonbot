@@ -8,7 +8,7 @@ function handler(req, res) {
 
   if (mode && token) {
     if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-      console.log('WEBHOOK_VERIFIED');
+      // console.log('WEBHOOK_VERIFIED');
       res.status(200).send(challenge);
       return;
     }

@@ -10,7 +10,7 @@ async function handler(req, res) {
   }
 
   const webhookEvent = body.entry[0].messaging[0];
-  console.log('webhook_event---', webhookEvent);
+  // console.log('webhook_event---', webhookEvent);
   await messageProcess(webhookEvent, req, res);
 
   res.status(200).send('EVENT_RECEIVED');

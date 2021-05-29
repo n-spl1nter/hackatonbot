@@ -1,9 +1,11 @@
 import { sendMessage } from '../utils/api';
+import registerUser from './registerUser';
+import showMatches from './showMatches';
 import * as constants from '../constants';
 
 const messages = {
   SEARCH: {
-    text: 'Выбери тип мероприятия',
+    text: 'Выбери тип общения',
     "quick_replies":[
       {
         "content_type":"text",
@@ -16,9 +18,9 @@ const messages = {
       }
     ]
   },
-  MATCHES: { text: 'Выбрны совпадения' },
-  SETTINGS: { text: 'Выбраны настройки' },
-  START: { text: 'Добро пожаловать в OmniFriend! Здесь ты сможешь найти единомышленников, с которыми хорошо проведешь время.' },
+  MATCHES: showMatches,
+  SETTINGS: { text: 'Тут будут настройки поиска и описание профиля' },
+  START: registerUser,
 
 }
 
@@ -31,7 +33,7 @@ export default async function postback(event) {
   const { sender: { id }, postback: { payload } } = event;
   const responseExpression = messages[payload];
   const message = typeof responseExpression === 'function'
-    ? await responseExpression()
+    ? await responseExpression(event)
     : responseExpression;
   if (!message) {
     return;

@@ -47,7 +47,7 @@ async function acceptEvent(event) {
       return getActivityMessage(event, constants.EVENT_ONLINE_NEXT);
     } else if (res.type === 'ok') {
       await sendMessage({
-        text: 'Твоя заявка принята! Дождись одобрения от коллеги.',
+        text: 'Отлично, при взаимном интересе я пришлю сообщение. Твои совпадения всегда доступны в меню.',
       }, id);
       return getActivityMessage(event, constants.EVENT_ONLINE_NEXT);
     }
@@ -72,7 +72,6 @@ export default async function quickReply(event) {
     : responseExpression;
 
   if (acceptRegexp.test(payload)) {
-    console.log('payload---', payload);
     await messages[constants.ACCEPT_EVENT](event);
   }
 
